@@ -22,7 +22,7 @@
   *{ margin:0; padding:0; box-sizing:border-box; }
 
   html, body{
-    height:100%;
+    /* Hapus height: 100% agar tidak membatasi scroll */
     background: var(--void);
     overflow-x:hidden;
   }
@@ -32,8 +32,7 @@
     color:var(--text-soft);
     min-height:100vh;
     display:flex;
-    align-items:center;
-    justify-content:center;
+    flex-direction: column; /* Ditambahkan agar flow scroll natural */
     position:relative;
     padding: 48px 18px;
   }
@@ -92,6 +91,7 @@
     z-index:2;
     width:100%;
     max-width:680px;
+    margin: auto; /* PENAMBAHAN KUNCI: Menengahkan elemen tanpa memotong bagian atas */
     background: linear-gradient(180deg, rgba(18,32,64,0.42), rgba(8,14,32,0.55));
     border:1px solid var(--glass-border);
     border-radius:22px;
@@ -343,8 +343,16 @@
     outline-offset: 3px;
   }
 
+  /* ---------- MOBILE OPTIMIZATION ---------- */
   @media (max-width: 480px){
-    .card{ border-radius:16px; }
+    body {
+      padding: 24px 14px; /* Kurangi padding utama agar kartu punya ruang lega */
+    }
+    .card{ 
+      border-radius:16px; 
+      /* Pastikan padding kartu sedikit menyesuaikan layar kecil */
+      padding: clamp(24px, 6vw, 48px) clamp(18px, 6vw, 24px);
+    }
     .signoff{ justify-content:center; }
   }
 
